@@ -3,22 +3,26 @@ name: class deploy
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
+
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
-
     steps:
+    #Check out your repository under $GITHUB-WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-        #Run single command using the runners shell 
+    
+    #Run single command using the runners shell 
     - name: Installing node module
       uses: action/setup-node@v2
+      with:
+        node-version: 12
+        
     
-            
+     
     - name: Installing surge 
-    - run:  npm-install --global surge
-    - run: surge ./ class-20.surge.sh/ --token ${{ secrets.CLASS-20}} 
+      run:  npm-install --global surge
+    - name: deploying using surge
+      run: surge ./ class-20.surge.sh/ --token ${{ secrets.CLASS-20}} 
 
