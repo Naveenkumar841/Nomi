@@ -22,7 +22,7 @@ jobs:
     
      
     - name: Installing surge 
-      run:  npm-install --global surge
+      run:  npm install --global surge
     - name: deploying using surge
       run: surge ./ class-20.surge.sh/ --token ${{ secrets.CLASS-20}} 
 
